@@ -1,5 +1,5 @@
 name: Terraform sqs
- on:
+on:
   push:
     branches:
       - '*'
