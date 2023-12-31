@@ -14,6 +14,10 @@ jobs:
   release_terraform:
     name: Terraform SQS Job
     runs-on: ubuntu-latest
+    outputs:
+      validate_outcome: ${{ steps.validate.outcome }}
+      validate_stdout: ${{ steps.validate.outputs.stdout }}
+      fmt_outcome: ${{ steps.fmt.outcome }}
     steps:
       - uses: hashicorp/setup-terraform@v3
       
