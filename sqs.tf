@@ -1,11 +1,18 @@
-resource "aws_sqs_queue" "terraform_queue" {
-  name                      = "report-requests"
-  delay_seconds             = 2
-  max_message_size          = 2048
-  message_retention_seconds = 
-  receive_wait_time_seconds = 1
-  
-  tags = {
-    Environment = "lab-sqs"
-  }
+resource "aws_sqs_queue" "report_requests_dlq" {
+  name = "report-requests-dlq"
+}
+
+/* Se ppuede usar la fuente de datos si ya esta creada
+data "aws_sqs_queue" "dlq_attrs" {
+  name = "report-requests-dlq"
+}
+*/
+
+resource "aws_sqs_queue" "report_requests" {
+  name = "report-requests"
+  redrive_policy = jsonencode({
+    /*deadLetterTargetArn : data.aws_sqs_queue.dlq_attrs.arn,*/
+    deadLetterTargetArn :  aws_sqs_queue.report_requests_dlq.arn,
+    maxReceiveCount : 3
+    })
 }
