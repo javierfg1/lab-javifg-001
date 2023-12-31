@@ -1,5 +1,6 @@
 name: Terraform sqs
 on:
+  workflow_dispatch:
   push:
     branches:
       - '*'
