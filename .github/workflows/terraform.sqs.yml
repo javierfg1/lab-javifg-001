@@ -20,6 +20,9 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
 
+      - name: Terraform Config
+        run: git config --global init.defaultBranch main
+
       - name: Terraform Init
         run: terraform init -backend-config=backend.conf
         env:
