@@ -9,7 +9,7 @@ on:
       - opened
     branches:
       - 'main'
-    working-directory: ./app
+
 jobs:
   release_terraform:
     name: Terraform SQS Job
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: hashicorp/setup-terraform@v3
       
-      - name: Build Docker image
+      - name: Change to working directory
         run: cd ..
 
       - name: Terraform fmt
