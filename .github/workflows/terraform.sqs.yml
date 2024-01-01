@@ -1,3 +1,5 @@
+# Ejecutar con github actions --> gh workflow run "Terraform sqs" 
+# o haciendo -->  git push origin main
 name: Terraform sqs
 on:
   workflow_dispatch:
