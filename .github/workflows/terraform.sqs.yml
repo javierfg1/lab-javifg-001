@@ -19,6 +19,7 @@ jobs:
       validate_stdout: ${{ steps.validate.outputs.stdout }}
       fmt_outcome: ${{ steps.fmt.outcome }}
     steps:
+      - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform fmt
